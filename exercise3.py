@@ -23,7 +23,7 @@ class Block(pygame.sprite.Sprite):
 		pygame.sprite.Sprite.__init__(self)
 		self.image = pygame.image.load(os.path.join('.', img)).convert()
 		self.rect = self.image.get_rect()
-		#self.image.set_colorkey(green)
+		self.image.set_colorkey((170,170,170))
 		(self.rect.x,self.rect.y) = position
 		self.direction = direction
 
@@ -46,10 +46,12 @@ def main():
 	pygame.init()
 	screen = pygame.display.set_mode(screen_size)
 	clock = pygame.time.Clock()
-
 	blocks = pygame.sprite.Group()
-	block = Block('sprite.png',(200,200),(5,1))
-	blocks.add(block)
+	for i in range(random.randint(10,30)):
+		position = (random.randrange(800), random.randrange(600))
+		direction = (random.randrange(-10, 10), random.randrange(-10, 10))
+		block = Block('maleBasePreview.png',position,direction)
+		blocks.add(block)
 
 	while True:
 		clock.tick(FPS)

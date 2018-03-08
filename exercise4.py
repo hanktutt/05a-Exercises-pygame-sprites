@@ -27,9 +27,13 @@ class Block(pygame.sprite.Sprite):
 		(self.margin_x,self.margin_y) = img_margin	# the space between the images on the sprite sheet
 
 		self.rect = pygame.Rect((self.margin_x,self.margin_y,self.width,self.height))
+		(pos_x, pos_y) = (random.randrange(0,4), random.randrange(0,2))
+		x = (self.width + self.margin_x)*pos_x + self.margin_x
+		y = (self.height + self.margin_y) * pos_y + self.margin_y
+		self.rect = pygame.Rect((x, y, self.width, self.height))
 		self.image = pygame.Surface(self.rect.size).convert()
 		self.image.blit(self.sheet, (0,0), self.rect)	#from the sheet, grab the correct image
-		#self.image.set_colorkey(green)
+		self.image.set_colorkey(green)
 		
 		(self.rect.x,self.rect.y) = position
 		self.direction = direction
@@ -47,6 +51,11 @@ class Block(pygame.sprite.Sprite):
 			self.rect.bottom = 0
 		if self.rect.bottom < 0:
 			self.rect.top = HEIGHT
+		(pos_x, pos_y) = (random.randrange(0, 4), random.randrange(0, 2))
+		x = (self.width + self.margin_x) * pos_x + self.margin_x
+		y = (self.height + self.margin_y) * pos_y + self.margin_y
+		self.recty = pygame.Rect((x, y, self.width, self.height))
+		self.image.blit(self.sheet, (0, 0), self.recty)
 
 
 def main():
